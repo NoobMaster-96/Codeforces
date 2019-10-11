@@ -10,7 +10,7 @@ int main(){
   	for(int i=0;i<q;i++){
   		long int h,n;
   		cin>>h>>n;
-  		long long int* levels = new long long int[h+1,0];
+  		vector<int> levels(h+1,0);
   		for(int j=0;j<n;j++){
   			long int temp;
   			cin>>temp;
