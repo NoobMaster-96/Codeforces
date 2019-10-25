@@ -8,21 +8,42 @@ int main(){
 		string str;
 		cin>>str;
 		int l =str.length();
-		int swap=-1;
-		while(swap!=0){
-			swap=0;
-			for(int i=0;i<l-1;i++){
-				if(str[i]>str[i+1]){
-					if(str[i]%2!=str[i+1]%2){
-						char temp = str[i];
-						str[i] = str[i+1];
-						str[i+1] = temp;
-						swap++;
-					}
-				}
+		string stre,stro;
+		for(int i=0;i<l;i++){
+			int a = str[i] - '0';
+			//cout<<a<<endl;
+			if(a%2==0){
+				stre.push_back(str[i]);
+			}
+			else if(a%2==1){
+				stro.push_back(str[i]);
 			}
 		}
-		cout<<str<<endl;
+		//cout<<stre<<endl;
+		//cout<<stro<<endl;
+		int j=0,k=0;
+		string ans;
+		while(j<stre.length() && k<stro.length()){
+			if(stre[j]<stro[k]){
+				ans.push_back(stre[j]);
+				j++;
+			}
+			else{
+				ans.push_back(stro[k]);
+				k++;
+			}
+		}
+		if(k==stro.length()){
+			for(;j<stre.length();j++){
+				ans.push_back(stre[j]);
+			}
+		}
+		else if(j==stre.length()){
+			for(;k<stro.length();k++){
+				ans.push_back(stro[k]);
+			}
+		}
+		cout<<ans<<endl;
 	}
 	return 0;
 }
