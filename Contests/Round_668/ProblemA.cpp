@@ -6,9 +6,15 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-    	int n,m;
-        cin>>n>>m;
-        int diff = abs(n-m);
-        cout<<(int)ceil(diff/10.0)<<endl;
+    	int n;
+    	cin>>n;
+    	vector<int> a(n);
+    	for(int i =n-1;i>=0;i-=1){
+    		cin>>a[i];
+    	}
+    	for(int i=0;i<n;i++){
+    		cout<<a[i]<<" ";
+    	}
+    	cout<<endl;
     }
 }

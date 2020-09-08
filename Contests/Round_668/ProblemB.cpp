@@ -7,22 +7,29 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-        lli a,b,x,y,n,k=LONG_MAX, l=LONG_MAX, m=LONG_MAX, p=LONG_MAX;
-        cin>>a>>b>>x>>y>>n;
-        if(x>a-n){
-            lli rem=a-x;
-            k = max(y, b-(n-rem))*(x);
+        int n;
+        cin>>n;
+        vector<int> a(n);
+        for(int i=0;i<n;i++){
+            cin>>a[i];
         }
-        else{
-            k=(a-n)*b;
+        lli ans = 0;
+        lli num = 0;
+        for(int i=0;i<n;i++){
+            if(a[i]>=0){
+                num += (lli)a[i];
+            }
+            else{
+                lli diff = abs(a[i]);
+                if(num>=diff){
+                    num -= diff;
+                }
+                else{
+                    ans += (lli)abs(a[i])-num;
+                    num = 0;
+                }
+            }
         }
-        if(y>b-n){
-            lli rem=b-y;
-            l = max(x, a-(n-rem))*(y);
-        }
-        else{
-            l=(b-n)*a;
-        }
-        cout<<(min(k,l))<<endl;
+        cout<<ans<<endl;
     }
 }

@@ -7,32 +7,65 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-        int n,x,y;
-        cin>>n>>x>>y;
-        int d = y-x;
-        int num = n-1;
-        while(d%num){
-            num-=1;
+        int k,n;
+        cin>>n>>k;
+        string s;
+        cin>>s;
+        int o = 0;
+        int z = 0;
+        int q = 0;
+        int i = 0;
+        while(i<k){
+            if(s[i]=='1'){
+                o+=1;
+            }
+            else if(s[i]=='0'){
+                z+=1;
+            }
+            else{
+                q+=1;
+            }
+            i++;
         }
-
-        int diff = d/num;
-        vector<int> ans;
-        for(int i=x;i<=y;i+=diff){
-            ans.push_back(i);
+        bool check = true;
+        if((o>z && o-q>z) ||(z>o && z-q>o)){
+            cout<<"NO"<<endl;
+            continue;
         }
-        int val = x-diff;
-        while(ans.size()!=n && val>0){
-            ans.push_back(val);
-            val -= diff;
+        int req = k/2;
+        int f0 = req-z;
+        int f1 = req-o;
+        while(i<n){
+            char r = s[i];
+            char l = s[i-k];
+            i++;
+            if((r=='1' and l=='0')||(r=='0' and l=='1')){
+                check = false;
+                break;
+            }
+            else if(r==l){
+                continue;
+            }
+            else if(r=='?'){
+                s[i-1] = l;
+                continue;
+            }
+            if(r=='0'){
+                f0-=1;
+            }
+            else{
+                f1-=1;
+            }
+            if(f1<0 || f0<0){
+                check = false;
+                break;
+            }
         }
-        val = y+diff;
-        while(ans.size()!=n){
-            ans.push_back(val);
-            val += diff;
+        if(check){
+            cout<<"YES"<<endl;
         }
-        for(int i=0;i<n;i++){
-            cout<<ans[i]<<" ";
+        else{
+            cout<<"NO"<<endl;
         }
-        cout<<endl;
     }
 }
