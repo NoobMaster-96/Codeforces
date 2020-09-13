@@ -9,52 +9,27 @@ int main(){
     	int n;
     	cin>>n;
     	vector<int> a(n);
+        vector<int> m(101);
     	for(int i=0;i<n;i+=1){
             cin>>a[i];
+            m[a[i]]++;
         }
-        if(n==2){
-            if(a[0]==a[1]){
-                cout<<2<<endl;
-                cout<<a[0]<<" "<<a[1];
-                cout<<endl;
+        int ans = 0;
+        int cnt = 0;
+        for(int i=0;i<=100;i+=1){
+            if(m[i]==0 && cnt==0){
+                ans += 2*i;
+                cnt += 2;
             }
-            else{
-                cout<<1<<endl;
-                cout<<0<<endl;
+            if(m[i]==1 && cnt==0){
+                ans += i;
+                cnt += 1;
             }
-            continue;
-        }
-        vector<int> ans;
-        vector<bool> visited(n+1,0);
-        for(int i=1;i<n;i+=1){
-            if(a[i]==a[i-1]&&!visited[i-1]){
-                ans.push_back(a[i]);
-                ans.push_back(a[i-1]);
-                visited[i] = 1;
-                visited[i-1] = 1;
-            }
-            else{
-                int j = i-1;
-                while(j>=0)
-                {
-                    if(visited[j]){
-                        break;
-                    }
-                    if(a[i]==a[j]&&!visited[j]){
-                        ans.push_back(a[i]);
-                        ans.push_back(a[j]);
-                        visited[i] = 1;
-                        visited[j] = 1;
-                        break;
-                    }
-                    j--;
-                }
+            if(m[i]==0 && cnt==1){
+                ans += i;
+                cnt += 1;
             }
         }
-        cout<<ans.size()<<endl;
-        for(int i=0;i<ans.size();i+=1){
-            cout<<ans[i]<<" ";
-        }
-        cout<<endl;
+        cout<<ans<<endl;
     }
 }
