@@ -7,33 +7,20 @@ int main(){
     cin>>t;
     while(t--){
     	int n;
-        string a;
-    	cin>>n>>a;
-        bool odd = false;
-        bool even = false;
-        for(int i=0;i<n;i+=1){
-            if(i%2==0 && a[i]%2==1){
-                odd = true;
-            }
-            else if(i%2==1 && a[i]%2==0){
-                even = true;
-            }
+        cin>>n;
+        vector<int> a(n);
+        set<int> s;
+        for(int i=0;i<n;i++){
+            cin>>a[i];
+            s.insert(a[i]);
         }
-        if(n%2==1){
-            if(odd){
-                cout<<1<<endl;
-            }
-            else{
-                cout<<2<<endl;
-            }
+        vector<int> b = a;
+        sort(b.begin(),b.end(),greater<int>());
+        if(a!=b or s.size()<n){
+            cout<<"YES"<<endl;
         }
         else{
-            if(even){
-                cout<<2<<endl;
-            }
-            else{
-                cout<<2<<endl;
-            }
+        cout<<"NO"<<endl;
         }
     }
 }
