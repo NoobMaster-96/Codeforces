@@ -1,13 +1,7 @@
-6
-8
-bbdcaaaa
-8
-asdfghjk
-8
-ceaaaabb
-8
-bbaaddcc
-1
-z
-2
-ac
+3
+5 9
+1 2 3 4 5
+4 0
+-1 -2 -3 892
+5 -1
+-10 -10 -10 10 10
