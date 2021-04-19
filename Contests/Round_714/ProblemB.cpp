@@ -1,41 +1,15 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define endl "\n"
+#define ll long long
+#define mod 1000000007
 
-void solve(vector<string>& grid, int n){
-	vector<pair<int,int>> points;
-	for(int i=0;i<n;i+=1){
-		for(int j=0;j<n;j+=1){
-			if(grid[i][j]=='*'){
-				pair<int,int> temp = {i,j};
-				points.push_back(temp);
-			}
-		}
+ll modper(ll  n){
+	ll ans = 1;
+	for(ll i=2;i<=n;i+=1){
+		ans = (ans*i)%mod;
 	}
-	if(points[0].first==points[1].first){
-		if(points[0].first!=n-1){
-			grid[points[0].first+1][points[0].second] = '*';
-			grid[points[1].first+1][points[1].second] = '*';
-		}
-		else{
-			grid[points[0].first-1][points[0].second] = '*';
-			grid[points[1].first-1][points[1].second] = '*';
-		}
-	}
-	else if(points[0].second==points[1].second){
-		if(points[0].second!=n-1){
-			grid[points[0].first][points[0].second+1] = '*';
-			grid[points[1].first][points[1].second+1] = '*';
-		}
-		else{
-			grid[points[0].first][points[0].second-1] = '*';
-			grid[points[1].first][points[1].second-1] = '*';
-		}
-	}
-	else{
-		grid[points[0].first][points[1].second] = '*';
-		grid[points[1].first][points[0].second] = '*';
-	}
+	return ans;
 }
 
 int main(){
@@ -44,13 +18,35 @@ int main(){
 	while(t--){
 		int n;
 		cin>>n;
-		vector<string> grid(n);
+		vector<int> a(n);
+		int cnt0 = 0, cnt1 = 0, cnto = 0;
 		for(int i=0;i<n;i+=1){
-			cin>>grid[i];
+			cin>>a[i];
+			if(a[i]==0){
+				cnt0+=1;
+			}
+			else if(a[i]==1){
+				cnt1+=1;
+			}
+			if((a[i]&1)==1){
+				cnto+=1;
+			}
 		}
-		solve(grid,n);
-		for(int i=0;i<n;i+=1){
-			cout<<grid[i]<<endl;
+		sort(a.begin(),a.end());
+		if(a[0]==a[n-1]){
+			cout<<modper((ll)n)<<endl;
+			continue;
 		}
+		if(cnt0>=2){
+			ll ans = ((((ll)cnt0*(ll)(cnt0-1))%mod*(modper((ll)(n-2))))%mod);
+			cout<<ans<<endl;
+			continue;
+		}
+		if(cnt1>=2 && cnto==n){
+			ll ans = ((((ll)cnt1*(ll)(cnt1-1))%mod*(modper((ll)(n-2))))%mod);
+			cout<<ans<<endl;
+			continue;
+		}
+		cout<<0<<endl;
 	}
 }
