@@ -12,16 +12,19 @@ int main(){
 		for(int i=0;i<n;i+=1){
 			cin>>a[i];
 		}
+		bool find = false;
 		for(int i=0;i<n;i+=1){
-			if(a[i]%2==0){
-				cout<<a[i]<<" ";
+			int x = sqrt(a[i]);
+			if(x*x!=a[i]){
+				find = true;
+				break;
 			}
 		}
-		for(int i=0;i<n;i+=1){
-			if(a[i]%2==1){
-				cout<<a[i]<<" ";
-			}
+		if(find){
+			cout<<"YES"<<endl;
 		}
-		cout<<endl;
+		else{
+			cout<<"NO"<<endl;
+		}
 	}
 }
