@@ -6,16 +6,15 @@ int main(){
     int t;
     cin>>t;
     while(t--){
-    	int n;
-        cin>>n;
-        int r;
-        int cnt = 0;
-        for(int i=0;i<n;i+=1){
-            cin>>r;
-            if(r==1 || r==3){
-                cnt+=1;
-            }
+    	int r,b,d;
+        cin>>r>>b>>d;
+        double n = min(r,b);
+        double diff = (r+b-(2*n))/n;
+        if(diff<=(double)d){
+            cout<<"YES"<<endl;
         }
-        cout<<cnt<<endl;
+        else{
+            cout<<"NO"<<endl;
+        }
     }
 }
